@@ -31,6 +31,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void addEmployee(Employee employee) {
+       if (getEmployeeById(employee.getId()) != null){
+           throw new IllegalArgumentException("Mã nhân viên đã tồn tại !");
+       }
+
+
         employees.add(employee);
     }
 
