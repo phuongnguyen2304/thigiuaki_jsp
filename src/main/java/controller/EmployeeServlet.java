@@ -46,6 +46,9 @@ public class EmployeeServlet extends HttpServlet {
             case "view":
                 viewEmployee(request,response);
                 break;
+            case "search":
+                searchEmployee(request,response);
+                break;
             default:
                listEmployees(request,response);
                 break;
@@ -140,6 +143,13 @@ public class EmployeeServlet extends HttpServlet {
             response.sendRedirect("employee?action=list");
         }
 
+    }
+    private void searchEmployee(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+        String keyword = request.getParameter("keyword").toLowerCase();
+        List<Employee> matchingEmployees = employeeService.searchEmployees(keyword);
+        request.setAttribute("employees",matchingEmployees);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("employee-list.jsp");
+        dispatcher.forward(request,response);
     }
 
 
