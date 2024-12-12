@@ -52,11 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
-    @Override
-    public void deleteEmployee(String id) {
-        employees.removeIf(employee -> employee.getId().equals(id));
 
-    }
 
     @Override
     public List<Employee> searchEmployees(String keyword) {
@@ -67,4 +63,14 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .filter(employee -> employee.getName().toLowerCase().contains(finalKeyword1) || employee.getId().toLowerCase().contains(finalKeyword1))
                 .toList();
     }
+
+
+
+    @Override
+
+    public void deleteEmployee(String id){
+        employees.removeIf(employee -> employee.getId().equals(id));
+
+    }
+
 }

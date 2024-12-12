@@ -53,6 +53,8 @@
                 <a href="employee?action=view&id=${employee.id}">View</a>
                 <a href="employee?action=edit&id=${employee.id}">Edit</a>
                 <a href="employee?action=delete&id=${employee.id}">Delete</a>
+                <a href="employee?action=edit&id=${employee.id}">Sửa</a> |
+                <a href="employee?action=delete&id=${employee.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">Xóa</a>
             </td>
         </tr>
     </c:forEach>
