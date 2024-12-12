@@ -43,6 +43,9 @@ public class EmployeeServlet extends HttpServlet {
             case "delete":
                 deleteEmployees(request,response);
                 break;
+            case "view":
+                viewEmployee(request,response);
+                break;
             default:
                listEmployees(request,response);
                 break;
@@ -124,6 +127,18 @@ public class EmployeeServlet extends HttpServlet {
         }
         response.sendRedirect("employee?action=list");
 
+
+    }
+    private void viewEmployee(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+        String id = request.getParameter("id");
+        Employee employee = employeeService.getEmployeeById(id);
+        if (employee != null){
+            request.setAttribute("employee",employee);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("view-employee.jsp");
+            dispatcher.forward(request,response);
+        }else {
+            response.sendRedirect("employee?action=list");
+        }
 
     }
 
