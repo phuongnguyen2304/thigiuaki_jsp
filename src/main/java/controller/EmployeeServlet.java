@@ -40,8 +40,11 @@ public class EmployeeServlet extends HttpServlet {
             case "edit":
                 showEditForm(request, response);
                 break;
+            case "delete":
+                deleteEmployees(request,response);
+                break;
             default:
-                response.sendRedirect("employee?action=list");
+               listEmployees(request,response);
                 break;
         }
     }
@@ -113,6 +116,15 @@ public class EmployeeServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Dữ liệu không hợp lệ. Vui lòng thử lại.");
             showEditForm(request, response);
         }
+    }
+    private void deleteEmployees(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+        String id = request.getParameter("id");
+        if (id != null){
+            employeeService.deleteEmployee(id);
+        }
+        response.sendRedirect("employee?action=list");
+
+
     }
 
 
