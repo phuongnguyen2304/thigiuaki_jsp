@@ -4,6 +4,7 @@ import model.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EmployeeServiceImpl implements EmployeeService {
     private static List<Employee> employees = new ArrayList<>();
@@ -54,15 +55,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 
-    @Override
-    public List<Employee> searchEmployees(String keyword) {
-        keyword = keyword.toLowerCase();
-        String finalKeyword = keyword;
-        String finalKeyword1 = keyword;
-        return employees.stream()
-                .filter(employee -> employee.getName().toLowerCase().contains(finalKeyword1) || employee.getId().toLowerCase().contains(finalKeyword1))
-                .toList();
-    }
+
+
 
 
 
@@ -71,6 +65,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void deleteEmployee(String id){
         employees.removeIf(employee -> employee.getId().equals(id));
 
+    }
+    @Override
+    public List<Employee> searchEmployees(String keyword){
+        return employees.stream()
+                .filter(employee -> employee.getId().toLowerCase().contains(keyword)||employee.getName().toLowerCase().contains(keyword)).collect(Collectors.toList());
     }
 
 }

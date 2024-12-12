@@ -27,6 +27,11 @@
 
 %>
 <h1>Employee List</h1>
+<form action="employee" method="get">
+    <input type="hidden" name="action" value="search">
+    <input type="text" name="keyword" placeholder="Tìm kiếm theo tên hoặc mã nhân viên">
+    <button type="submit">Tìm Kiếm</button>
+</form>
 <table border="1">
     <thead>
     <tr>
